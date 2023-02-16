@@ -4,7 +4,8 @@ services:
     build: .
     container_name: refatorar
     volumes:
-      - .:/var/www
+      - .:/var/www/html
+      - ./docker/apache:/etc/apache2/sites-available
     depends_on:
       - db
     links:
