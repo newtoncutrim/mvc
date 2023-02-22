@@ -8,14 +8,11 @@ class Home extends Page{
         $obOganization = new Organization();
         //view da home
         $content = View::renderView('home', [
-            'id' => $obOganization->id,
-            'nome' => $obOganization->name,
-            'site' => $obOganization->site,
-            'description' => $obOganization->description
+            'name' => $obOganization->name
         ]);
 
         //view da page
-        return parent::getPage('Projeto fazendo meu frimework', $content);
+        return parent::getPage('Home => fazendo meu frimework', $content);
     }
 }
 

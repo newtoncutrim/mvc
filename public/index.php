@@ -1,19 +1,33 @@
 <?php
 require __DIR__ . '../../vendor/autoload.php';
-use App\Http\Response;
-use \App\Http\Router;
-use \App\Controller\Pages\Home;
 
+use \App\Http\Router;
+use \WilliamCosta\DotEnv\Environment;
+use \App\Utils\View;
+
+//LOAD ENVIRONMENT VARS FROM FILEs
+// Environment::load('../');
 
 define('URL', 'http://localhost:8000');
 
-$teste = new Router(URL);
-$teste->get('/',[function(){
-    return new Response(200, Home::getHome());
-}]);
+//GET ENVIRONMENT VAR
+// echo getenv('URL');
+View::init([
+    'URL' => URL
+]);
 
-$teste->run()->sendResponse();
-// MVC em PHP: Implementando um gerenciador de rotas - Série MVC em PHP - Parte 2 13:00
+
+
+$obRouter = new Router(URL);
+
+
+require_once("../app/routes/pages.php");
+
+$obRouter->run()->sendResponse();
+
+
+
+// MVC em PHP: Implementando um gerenciador de rotas - Série MVC em PHP - Parte 2   1:06:00
 
 // echo '<pre>';
 // print_r($teste);
